@@ -67,7 +67,7 @@ print(create_identity())  # attendu: [[1. 0. 0.]
 
 # %%
 def create_random():
-    return np.random.uniform(0, 1, (3,3)) # 👈 Insérez le code ici
+    return np.random.uniform(0,1,(3,3)) # 👈 Insérez le code ici
 
 
 print(create_random())  # attendu: un tableau 3x3 de valeurs aléatoires entre 0 et 1
@@ -156,7 +156,7 @@ def g(x):
 
 
 def g_vectorized(x):
-    return np.where(x <= 0, x, x**2) # 👈 Insérez le code ici
+    return np.where(x < 0, x, x**2) # 👈 Insérez le code ici
 
 
 print(g_vectorized(np.array([1, -2, 3, -4, 5])))  # attendu: [ 1 -2  9 -4 25]
@@ -172,8 +172,8 @@ print(g_vectorized(np.array([1, -2, 3, -4, 5])))  # attendu: [ 1 -2  9 -4 25]
 
 # %%
 def select_even(arr):
-      # 👈 Insérez le code ici
-
+    arr2 = arr[arr % 2 == 0]# 👈 Insérez le code ici
+    return arr2 
 
 print(
     select_even(np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
@@ -186,8 +186,11 @@ print(
 
 
 # %%
+def g(x):
+    return np.where(x<0, 0, x)
+
 def replace_negatives(arr):
-    return abs(arr)  # 👈 Insérez le code ici
+    return g(arr)  # 👈 Insérez le code ici
 
 
 print(replace_negatives(np.array([1, -2, 3, -4, 5])))  # attendu: [1 0 3 0 5]
@@ -218,7 +221,10 @@ print(get_center(np.arange(1, 26).reshape(5, 5)))  # attendu: [[ 7  8  9]
 # %%
 def swap_first_rows(arr):
     l,d = arr.shape
-    return   # 👈 Insérez le code ici
+    arr2 = arr.copy()
+    arr[0] = arr2[1]
+    arr[1] = arr2[0]
+    return arr#  Insérez le code ici
 
 
 print(swap_first_rows(np.array([[1, 2], [3, 4], [5, 6]])))  # attendu: [[3 4]
@@ -236,8 +242,11 @@ print(swap_first_rows(np.array([[1, 2], [3, 4], [5, 6]])))  # attendu: [[3 4]
 
 # %%
 def funny_checkerboard(size):
-    mat = np.zeros(size)
-      # 👈 Insérez le code ici
+    mat = np.zeros((size, size))
+    for i in range(size//2 + 1):
+        mat[2*i, 0::2] = 2*i+1
+    mat[1::2, 1::2] = 1
+    return mat # 👈 Insérez le code ici
 
 
 print(funny_checkerboard(5))  # attendu: [[1. 0. 1. 0. 1.]
@@ -258,7 +267,10 @@ print(funny_checkerboard(5))  # attendu: [[1. 0. 1. 0. 1.]
 
 # %%
 def mean(arr):
-    pass  # 👈 Insérez le code ici
+    nb = np.size(arr) 
+    sommme = arr.sum()
+    return sommme/nb
+ # 👈 Insérez le code ici
 
 
 # %% [markdown]
@@ -269,7 +281,7 @@ def mean(arr):
 
 # %%
 def sum_odd_columns(arr):
-    pass  # 👈 Insérez le code ici
+    return arr[:, 1::2].sum() # 👈 Insérez le code ici
 
 
 print(sum_odd_columns(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])))  # attendu: 15
@@ -283,8 +295,7 @@ print(sum_odd_columns(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])))  # attendu: 
 
 # %%
 def max_per_line(arr):
-    pass  # 👈 Insérez le code ici
-
+    return arr.max(axis = 1) # 👈 Insérez le code ici
 
 print(max_per_line(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])))  # attendu: [3 6 9]
 
@@ -296,7 +307,9 @@ print(max_per_line(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])))  # attendu: [3 
 
 # %%
 def min_per_column(arr):
-    pass  # 👈 Insérez le code ici
+    return arr.min(axis = 0) # 👈 Insérez le code ici
 
 
 print(min_per_column(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])))  # attendu: [1 2 3]
+
+# %%
